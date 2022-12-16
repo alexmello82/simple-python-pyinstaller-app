@@ -5,7 +5,11 @@ pipeline {
          label 'docker'
       }
     }
-    agent none
+
+      options {
+        timestamps()
+    }
+    
     stages {
         stage('Back-end') {
             agent {
