@@ -1,11 +1,10 @@
-agent {
-    node {
-      label 'docker'
-    }
-  }
-
-
 pipeline {
+
+     agent {
+       node {
+         label 'docker'
+      }
+    }
     agent none
     stages {
         stage('Back-end') {
