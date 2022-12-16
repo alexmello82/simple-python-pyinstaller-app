@@ -1,12 +1,18 @@
 pipeline {
-    agent none
+    agent any
     stages {
         stage('Build') {
             agent {
-                docker { image 'python:3.8.3-alpine' }
+                docker {
+                    image 'gradle:6.7-jdk11'
+                    // Run the container on the node specified at the
+                    // top-level of the Pipeline, in the same workspace,
+                    // rather than on a new node entirely:
+                    reuseNode true
+                }
             }
             steps {
-                sh 'python -m py_compile sources/add2vals.py sources/calc.py'
+                sh 'gradle --version'
             }
         }
     }
